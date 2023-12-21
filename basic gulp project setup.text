@@ -146,7 +146,10 @@ gulp.task(
   );
   
 ------------------------
-
+Bug fix:
+** src directory and dest directory must be different 
+to avoid terminal run-related issues.
+------------------------
 
 
 
