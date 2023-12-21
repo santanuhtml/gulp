@@ -84,11 +84,6 @@ npm i sass --save-dev
 npm i gulp-minify --save-dev
 ----------------------
 
-1.3 Critical CSS
-----------------------
-npm install gulp-extract-critical-css --save-dev
-----------------------
-
 ==============
 2. gulpfile.js
 ==============
