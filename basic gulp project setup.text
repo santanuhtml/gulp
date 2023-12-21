@@ -38,6 +38,33 @@ npm init [install npm to crate Package.json]
 ]
 
 =========================
+Folder Structure
+=========================
+[]folder-name
+ |_[]src
+     |_[]scss
+     |_[]js
+     |_[]images
+     
+ |_[]dist
+    |_[]css
+    |_[]js
+    |_[]images
+    
+Node:
+mkdir src
+mkdir dist
+cd src
+mkdir scss
+mkdir js
+mkdir images
+cd ..
+cd dist
+mkdir css
+mkdir js
+mkdir images
+
+=========================
 Gulp install
 =========================
 1. After project setup we can install Gulp 
@@ -57,6 +84,10 @@ npm i sass --save-dev
 npm i gulp-minify --save-dev
 ----------------------
 
+1.3 Critical CSS
+----------------------
+npm install gulp-extract-critical-css --save-dev
+----------------------
 
 ==============
 2. gulpfile.js
@@ -76,15 +107,15 @@ const minify = require('gulp-minify');
 Step2: Define there task
 --------------
 gulp.task('styles', ()=>{
-    return gulp.src('scss/**/*.scss')
+    return gulp.src('src/scss/**/*.scss')
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-    .pipe(gulp.dest('css'))
+    .pipe(gulp.dest('dist/css'))
 })
 
 gulp.task('minify', ()=>{
-    return gulp.src('js/**/*.js')
+    return gulp.src('src/js/**/*.js')
     .pipe(minify())
-    .pipe(gulp.dest('min-js'))
+    .pipe(gulp.dest('dist/js'))
 })
 --------------
 Note:
@@ -98,10 +129,11 @@ Step3: Adding watch() method so that we don't need to
 run the terminal after doing any changes.
 --------------
 gulp.task('watch', (done) => {
-    gulp.watch('scss/**/*.scss', gulp.series('styles'));
-    gulp.watch('js/**/*.js', gulp.series('minify'));
+    gulp.watch('src/scss/**/*.scss', gulp.series('styles'));
+    gulp.watch('src/js/**/*.js', gulp.series('minify'));
     done();
-});
+  });
+
 --------------       
 
 Step4: Adding series() method to run every packages on
@@ -122,51 +154,32 @@ const sass = require('gulp-sass')(require('sass'));
 const minify = require('gulp-minify');
 
 gulp.task('styles', ()=>{
-    return gulp.src('scss/**/*.scss')
+    return gulp.src('src/scss/**/*.scss')
     .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-    .pipe(gulp.dest('css'))
+    .pipe(gulp.dest('dist/css'))
 })
 
 gulp.task('minify', ()=>{
-    return gulp.src('js/**/*.js')
+    return gulp.src('src/js/**/*.js')
     .pipe(minify())
-    .pipe(gulp.dest('min-js'))
+    .pipe(gulp.dest('dist/js'))
 })
 
 gulp.task('watch', (done) => {
-    gulp.watch('scss/**/*.scss', gulp.series('styles'));
-    gulp.watch('js/**/*.js', gulp.series('minify'));
+    gulp.watch('src/scss/**/*.scss', gulp.series('styles'));
+    gulp.watch('src/js/**/*.js', gulp.series('minify'));
     done();
   });
-
 
 gulp.task(
     "default",
     gulp.series("styles", "minify", "watch")
   );
-  
 ------------------------
 Bug fix:
 ** src directory and dest directory must be different 
 to avoid terminal run-related issues.
 ------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
