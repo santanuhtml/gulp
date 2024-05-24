@@ -174,7 +174,21 @@ gulp.task(
 Bug fix:
 ** src directory and dest directory must be different 
 to avoid terminal run-related issues.
-------------------------
 
+=================================
+*** Gulp summary:
+=================================
+> Install Gulp globally
+> Under the project directory create a file
+  called 'gulpfile.js'
+> under gulpfile.js file import all
+  packages like gulp, scss, minify, etc
+> Define task() which has 'src' and 'pipe' 
+  'src' => where newly created file saved
+  'pipe' => contain the task
+> End of all we define task() contain 'series'
+  for above the task.
+  'series' => Using this all tasks will run using
+  single command.
 
 
