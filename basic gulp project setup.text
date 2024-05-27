@@ -178,17 +178,19 @@ to avoid terminal run-related issues.
 =================================
 *** Gulp summary:
 =================================
-> Install Gulp globally
+> Install Gulp globally and locally
 > Under the project directory create a file
   called 'gulpfile.js'
 > under gulpfile.js file import all
   packages like gulp, scss, minify, etc
-> Define task() which has 'src' and 'pipe' 
-  'src' => where newly created file saved
-  'pipe' => contain the task
+> Define task() which has Task name, 'src', 'pipe' and 'dist'
+  'src'  => source files for the task
+  'pipe' => define all the task
+  'dist' => processed files destination directory
 > End of all we define task() contain 'series'
   for above the task.
   'series' => Using this all tasks will run using
   single command.
+
 
 
